@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import au.edu.swin.sdmd.l08_inafile_2023.R
 import au.edu.swin.sdmd.l08_inafile_2023.data.HistoryFile
+import au.edu.swin.sdmd.l08_inafile_2023.data.SharedPrefFile
 
 class HistoryFragment : Fragment() {
 
@@ -19,6 +21,19 @@ class HistoryFragment : Fragment() {
 
         val root = inflater.inflate(R.layout.fragment_history, container, false)
 
+        /**
+         * check if something is stored in the shared preferences file to show,
+         * and update the TextView on screen.
+         */
+        val sHistory: String? = SharedPrefFile.checkSharedPrefs(requireContext(),
+            getString(R.string.preference_file_key),
+            getString(R.string.last_input),
+            getString(R.string.last_input_defval)
+        )
+        sHistory?.let {
+            val tvHistory: TextView = root.findViewById(R.id.history)
+            tvHistory.text = String.format("Last value converted was %s", it)
+        }
 
         /**
          * The detailed retrieval of data from the file has moved to another

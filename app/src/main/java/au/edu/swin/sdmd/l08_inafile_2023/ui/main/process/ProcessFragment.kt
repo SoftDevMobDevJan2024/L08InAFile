@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import au.edu.swin.sdmd.l08_inafile_2023.R
+import au.edu.swin.sdmd.l08_inafile_2023.data.RawResourceFile
 
 class ProcessFragment : Fragment() {
 
@@ -19,8 +20,10 @@ class ProcessFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_process, container, false)
 
         val text = root.findViewById<TextView>(R.id.text_process)
-        val process = resources.openRawResource(R.raw.binary_process)
-            .bufferedReader().readText()
+//        val process = resources.openRawResource(R.raw.binary_process)
+//            .bufferedReader().readText()
+        val process = RawResourceFile.readContent(resources, R.raw.binary_process)
+
         text.text = Html.fromHtml(process, Html.FROM_HTML_MODE_COMPACT)
         return root
     }

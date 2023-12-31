@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import au.edu.swin.sdmd.l08_inafile_2023.R
 import au.edu.swin.sdmd.l08_inafile_2023.data.HistoryFile
+import au.edu.swin.sdmd.l08_inafile_2023.data.SharedPrefFile
 import au.edu.swin.sdmd.l08_inafile_2023.databinding.FragmentMainBinding
 
 class ConverterFragment : Fragment() {
@@ -35,6 +36,13 @@ class ConverterFragment : Fragment() {
                 /**
                  * This is where we update our files.
                  */
+                // shared pref file
+                SharedPrefFile.updateSharedPrefs(requireContext(),
+                    getString(R.string.preference_file_key),
+                    getString(R.string.last_input),
+                    sDecimal)
+
+                // history file
                 updateHistory(sDecimal, sBinary)
             } else {
                 val tvBinary: TextView = root.findViewById(R.id.tvBinary)
