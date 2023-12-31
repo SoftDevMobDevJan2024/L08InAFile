@@ -10,5 +10,10 @@ This is a small app that has the following functionalities. Some are extended fr
 
 The app makes use of the Bottom Navigation template -- this means fragments are used however these should not detract from the file reading and writing processes.
 
+Two versions:
+1. `main` branch: contains the functionalities above
+2. `historyFile` branch: contains just the History file functionality (without using Shared preferences).
+
+
 # To do
 1. When a new conversion has been performed, to automatically update HistoryFragment to show the entry
